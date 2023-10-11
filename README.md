@@ -2,6 +2,7 @@
 
 A reference SOWFA-6 case using ABL and ALMAdvanced solvers.
 
+Several modifications might be needed in the run scripts to make it suited to your environment.
 
 ## How to use
 

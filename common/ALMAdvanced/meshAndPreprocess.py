@@ -1,4 +1,4 @@
-#!/gpfs/softs/contrib/apps/python/2.7.6/bin/python
+#!/softs/contrib/apps/python/2.7.6/bin/python
 # -*- coding: utf-8 -*-
 #----------------------------------------------------------------------------
 # Created By  : Adria B-N

@@ -26,7 +26,7 @@ Upon completion, the script will write out:
 """
 import sys, os
 import numpy as np
-sys.path.append('/gpfs/home/nkumar001/OpenFOAM/nkumar001-6/addons/windtools')
+sys.path.append('/home/nishant/OpenFOAM/nishant-6/addons/windtools')
 from windtools.SOWFA6.postProcessing.sourceHistory import SourceHistory
 
 try:
