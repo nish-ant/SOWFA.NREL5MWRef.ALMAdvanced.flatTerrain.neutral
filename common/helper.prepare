@@ -1,0 +1,53 @@
+#!/bin/bash
+
+#- Source 
+source /home/nishant/.bash_profile
+module purge
+module load jq/1.6
+#
+source /home/nishant/tools/spack/share/spack/setup-env.sh
+spack env activate preciceFoam 
+
+#- Copy precursor directory
+cp -r ../common/ABL ./
+
+#- Copy WT directory
+cp -r ../common/ALMAdvanced ./
+
+#- User input
+inputFILE="./userInput.json"
+#- Flag for the run
+shortFlag=$(jq -r '.shortFlag' $inputFILE)
+#- Directory of the precursor ABL run
+precursorDir=$(jq '.precursorDir' $inputFILE)
+
+#- Values to include in setUp
+windSpeed=$(jq -r '.setupValues.windSpeed' $inputFILE)
+z0=$(jq -r '.setupValues.z0' $inputFILE)
+
+# ---------------------------------------------------------------------------
+start=`date +%s.%N`
+#- Insert shortFlag in ABL/
+sed -i "s/<rN>/$shortFlag/g" ABL/runscript.*
+
+#- Insert shortFlag in ALMAdvanced/
+sed -i "s/<rN>/$shortFlag/g" ALMAdvanced/runscript.*
+
+#- Modify ABL/setUp
+#- NOTE: -disableFunctionEntries is needed to disbale the expansion of macros 
+#-       (anything followed by `#`) and avoid their deletion
+foamDictionary -disableFunctionEntries -entry "windSpeed" -set $windSpeed ABL/setUp
+foamDictionary -disableFunctionEntries -entry "U0" -set "(${windSpeed} 0.0 0.0)" ABL/setUp
+foamDictionary -disableFunctionEntries -entry "z0" -set $z0 ABL/setUp
+
+# #- Insert inputMode in ABL/setUp
+# inputMode="#inputMode      merge"
+# sed -i -zE "s/(\n[^\n]*){3}$/\n${inputMode}&/" ABL/setUp
+
+#- Insert precursorDir in ALMAdvanced/runscript.preprocess
+sed -i -e "s~<precursorDir>~${precursorDir}~g" ALMAdvanced/runscript.preprocess
+
+end=`date +%s.%N`
+echo "Runtime:" $( echo "$end - $start" | bc -l )
+
+# ------------------------------------------------------------------------EOF

@@ -1,0 +1,46 @@
+      sliceDataMean
+      {
+          type                 surfaces;
+          functionObjectLibs   ("libsampling.so");
+          enabled              true;
+          interpolationScheme  cell;      // cell, cellPoint, cellPointCell
+          writeControl         adjustableRunTime;
+          writeInterval        100;
+          surfaceFormat        vtk;
+          fields
+          (
+              UAvg
+              p_rghAvg
+              uuPrime2
+              Rmean
+              kSGSmean
+              kResolved
+              epsilonSGSmean
+              omegaAvg
+          );
+          surfaces
+          (
+              slice_horizontal
+              {
+                  type         plane;
+                  planeType    pointAndNormal;
+                  pointAndNormalDict
+                  {
+                       point  (1265.0 1500.0 87.6);
+                       normal (0.0 0.0 1.0);
+                  }
+                  triangulate  false;
+              }
+              slice_vertical
+              {
+                  type         plane;
+                  planeType    pointAndNormal;
+                  pointAndNormalDict
+                  {
+                       point  (1265.0 1500.0 87.6);
+                       normal (0.0 1.0 0.0);
+                  }
+                  triangulate  false;
+              }
+          );
+      }

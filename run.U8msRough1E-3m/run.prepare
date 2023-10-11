@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+#SBATCH --job-name=prep
+#SBATCH --output=log.prepare
+#
+#SBATCH --ntasks=1
+#SBATCH --time=0-02:00:00
+#SBATCH --partition=preemptible
+#SBATCH --ear=off
+
+echo "#############################"
+echo "User:" $USER
+echo "Submit time:" $(squeue -u $USER -o '%30j %20V' | \
+    grep -e $SLURM_JOB_NAME | awk '{print $2}')
+echo "Launch time:" `date +"%Y-%m-%dT%T"`
+echo "Host:" `hostname`
+echo "Directory:" `pwd`
+echo "SLURM_JOBID:" $SLURM_JOBID
+echo "SLURM_JOB_NAME:" $SLURM_JOB_NAME
+echo "SLURM_SUBMIT_DIR:" $SLURM_SUBMIT_DIR
+echo "SLURM_JOB_NODELIST:" $SLURM_JOB_NODELIST
+echo "#############################"
+
+#- Run helper file
+. ../common/helper.prepare
+
+# ------------------------------------------------------------------------EOF

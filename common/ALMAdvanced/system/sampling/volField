@@ -1,0 +1,45 @@
+    volField
+    {
+        type                 volFieldValue;
+        libs                ("libfieldFunctionObjects.so");
+        log                  false; //true;
+        outputControl        adjustableTime;
+        writeInterval        0.35;
+        writeFormat          ascii; //binary;
+        writeInterval        1e-5;
+        writeFields          true;
+        //timeStart          20266.35;
+        //timeEnd            20366.45;
+        regionType           cellSet; //cellZone;
+        name                 local.3; // cellSet or cellZone defined by the topoSetDict
+        operation            none; 
+        fields
+        (
+            U
+        );
+    }
+
+    // foamToVTK -cellSet box -useTimeName -excludePatches '(".*")' -noFaceZones
+
+    // volField
+    // {
+    //   type                 sets;
+    //   functionObjectLibs   ("libsampling.so");
+    //   log                  on;
+    //   enabled              true;
+    //   outputControl        adjustableTime;
+    //   writeInterval        0.35;
+    //   timeStart            20266.35;
+    //   timeEnd              20366.45;
+    //   setFormat            vtk; //raw
+    //   interpolationScheme  cellPoint;
+    //   fields ( U );
+    //   sets
+    //   (
+    //      centres
+    //      {
+    //         type    cellCentre;
+    //         bounds  (1200 1300 0.1) (1600 400 250);
+    //      }
+    //   );
+    // }

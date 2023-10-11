@@ -1,0 +1,8 @@
+{
+    "shortFlag": "run.U8msRough1E-3m",
+    "precursorDir" : "/home/nishant/OpenFOAM/nishant-6/SOWFA6/exampleCases/sowfa6.database.NREL5MWRef.ALMAdvanced.flatTerrain.neutral/run.U8msRough1E-3m/ABL",
+    "setupValues" : {
+        "windSpeed" : 8.0,
+        "z0" : 1.0e-3
+    }
+}

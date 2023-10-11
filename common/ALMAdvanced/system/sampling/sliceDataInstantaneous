@@ -1,0 +1,74 @@
+      sliceDataInstantaneous
+      {
+          type                 surfaces;
+          functionObjectLibs   ("libsampling.so");
+          enabled              true;
+          interpolationScheme  cell;      // cell, cellPoint, cellPointCell
+          writeControl         adjustableRunTime;
+          writeInterval        10.5;
+          surfaceFormat        vtk;
+          fields
+          (
+              U
+              T
+              p_rgh
+          );
+          surfaces
+          (
+              slice_zHH
+              {
+                  type         cuttingPlane;
+                  planeType    pointAndNormal;
+                  pointAndNormalDict
+                  {
+                       basePoint     (1265.0 1500.0 87.6);
+                       normalVector  (0.0 0.0 1.0);
+                  }
+                  interpolate  true;
+              }
+              slice_y1500
+              {
+                  type         cuttingPlane;
+                  planeType    pointAndNormal;
+                  pointAndNormalDict
+                  {
+                       basePoint     (1265.0 1500.0 87.6);
+                       normalVector  (0.0 1.0 0.0);
+                  }
+                  interpolate  true;
+              }
+              slice_x0D
+              {
+                  type         cuttingPlane;
+                  planeType    pointAndNormal;
+                  pointAndNormalDict
+                  {
+                       basePoint     (1265.0 1500.0 87.6);
+                       normalVector  (1.0 0.0 0.0);
+                  }
+                  interpolate  true;
+              }
+              slice_x5D
+              {
+                  type         cuttingPlane;
+                  planeType    pointAndNormal;
+                  pointAndNormalDict
+                  {
+                       basePoint     (1895.0 1500.0 87.6);
+                       normalVector  (1.0 0.0 0.0);
+                  }
+                  interpolate  true;
+              }
+              slice_x10D
+              {
+                  type         cuttingPlane;
+                  planeType    pointAndNormal;
+                  pointAndNormalDict
+                  {
+                       basePoint     (2525.0 1500.0 87.6);
+                       normalVector  (1.0 0.0 0.0);
+                  }
+                  interpolate  true;
+              }
+          );
+      }

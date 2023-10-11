@@ -1,0 +1,35 @@
+    temporalAverages
+    {
+        type                 temporalAveraging;
+        functionObjectLibs   ( "libSOWFAfieldFunctionObjects.so" );
+        enabled              true;
+        writeControl         adjustableRunTime; // timeStep; // runTime;
+        timeStart            20120.05;
+        writeInterval        10.5;
+        fields
+        (
+            U 
+            { 
+                mean            on ; 
+                prime2Mean      on ; 
+                primeUPrimeMean off ; 
+                base            time ; 
+            } 
+
+            T 
+            { 
+                mean            on ; 
+                prime2Mean      on ; 
+                primeUPrimeMean on ; 
+                base            time ; 
+            } 
+
+            p_rgh 
+            { 
+                mean            on ; 
+                prime2Mean      on ; 
+                primeUPrimeMean off ; 
+                base            time ; 
+            }
+        );
+    }
